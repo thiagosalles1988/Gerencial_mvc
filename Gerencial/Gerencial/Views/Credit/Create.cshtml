@@ -1,0 +1,70 @@
+﻿@model Gerencial.Models.ViewModels.CreditVM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Acao</h2>
+
+@using (Html.BeginForm("Create", "Credit", FormMethod.Post, new { @id = "frmSaveCredit" }))
+{
+    @Html.ValidationSummary(true, "Verifique os erros abaixo!")
+
+    <div class="row">
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.Credit.NameCredit)
+            @Html.TextBoxFor(m => m.Credit.NameCredit, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Credit.NameCredit)
+        </div>
+
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.Credit.PaymentsDate)
+            @Html.TextBoxFor(m => m.Credit.PaymentsDate, "{0:dd/MM/yyyy}", new { @id = "dataPagamento", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Credit.PaymentsDate)
+        </div>
+
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.Credit.PaymentForm)
+            @Html.DropDownListFor(m => m.Credit.PaymentForm, new List<SelectListItem>
+                       { new SelectListItem{Text="Dinheiro", Value="Dinheiro", Selected = true},
+                         new SelectListItem{Text="Cartão de Crédito", Value="Cartão de Crédito"},
+                         new SelectListItem { Text = "Cheque", Value = "Cheque" } },
+                         new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Credit.PaymentForm)
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.Credit.Value)
+            @Html.TextBoxFor(m => m.Credit.Value, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Credit.Value)
+        </div>
+
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.Credit.Observation)
+            @Html.TextBoxFor(m => m.Credit.Observation, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Credit.Observation)
+        </div>
+
+        <div class="form-group col-sm-4 ">
+            <label class="">Cliente:</label>
+            @Html.DropDownListFor(m => m.Credit.ClientId,
+                                   new SelectList(Model.Client, "Id", "Name"),
+                                   "Selecione um Cliente",
+                                   new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Credit.ClientId)
+        </div>
+
+    </div>
+    @Html.HiddenFor(m => m.Credit.Id)
+
+    <button id="btnSubmit" type="submit" class="btn btn-success ">Salvar</button>
+    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+
+    @Html.AntiForgeryToken()
+}
+
+

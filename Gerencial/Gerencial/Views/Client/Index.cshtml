@@ -1,0 +1,81 @@
+﻿@model List<Gerencial.Models.Client>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastro de Clientes:</h2>
+@Html.ActionLink("Novo Cliente", "Create", null, new { @class = "btn btn-primary" })
+<br /><br />
+
+      <div>
+
+          @using (Html.BeginForm())
+          {
+              <div class="form-group ">
+                  <div class="row" style="background-color:ghostwhite;">
+                      <div class="col-sm-3">
+                          @Html.TextBox("searching", null, new { @class = "form-control " })
+                      </div>
+                      <div class="col-sm-2">
+                          <input type="submit" value="Pesquisar" class="btn btn-success " />
+                      </div>
+                  </div>
+              </div>
+
+          }
+      </div>
+
+
+                      <br />
+                      <div class="table-responsive">
+                          <table class="table table-bordered table-hover" style="white-space:nowrap;">
+                              <thead>
+                                  <tr>
+                                      <th>Nome</th>
+                                      <th>Endereço</th>
+                                      <th>Celular</th>
+                                      <th>Telefone</th>
+                                      <th>Email</th>
+                                      <th>Bairro</th>
+                                      <th>Estado</th>
+                                      <th>CEP</th>
+                                      <th>RG</th>
+                                      <th>CPF</th>
+                                      <th>Nascimento</th>
+                                      <th>Sexo</th>
+                                      <th>Profissão</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  @foreach (var client in Model)
+                                  {
+                                      <tr>
+                                          <td>@client.Name</td>
+                                          <td>@client.Address</td>
+                                          <td>@client.CellPhone</td>
+                                          <td>@client.PhoneNumber</td>
+                                          <td>@client.Mail</td>
+                                          <td>@client.District</td>
+                                          <td>@client.State</td>
+                                          <td>@client.ZipCode</td>
+                                          <td>@client.RG</td>
+                                          <td>@client.CPF</td>
+                                          <td>@client.BirthDate.Value.ToShortDateString()</td>
+                                          <td>@client.Sexo</td>
+                                          <td>@client.Profession</td>
+                                          <td>
+                                              @Html.ActionLink("Editar", "Edit", new { id = client.Id }, new { @class = "btn btn-warning" })
+                                          </td>
+                                          <td>
+                                              @Html.ActionLink("Detalhes", "Details", new { id = client.Id }, new { @class = "btn btn-success" })
+                                          </td>
+                                          <td>
+                                              @Html.ActionLink("Excluir", "Delete", new { id = client.Id }, new { @class = "btn btn-danger" })
+                                          </td>
+                                      </tr>
+                                  }
+                              </tbody>
+                          </table>
+                      </div>
+

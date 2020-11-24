@@ -1,0 +1,38 @@
+﻿@model Gerencial.Models.ViewModels.DebitViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>Relatório Despesas</h2>
+<label class="checkbox">
+    Total Débitos: R$: @Html.DisplayFor(model => model.Total)
+</label>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover"  style="white-space:nowrap;">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Data Pagamento</th>
+                <th>Forma</th>
+                <th>Valor</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var debit in Model.Debit)
+            {
+                <tr>
+                    <td>@debit.NameDebit</td>
+                    <td>@debit.PaymentsDate.ToShortDateString()</td>
+                    <td>@debit.PaymentForm</td>
+                    <td>@debit.Value</td>
+                    <td>@debit.Observation</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@*<form>
+    <button id="btnSubmit" type="submit" class="btn btn-primary " onClick="window.print()" >Imprimir</button>
+</form>*@

@@ -1,0 +1,87 @@
+﻿@model Gerencial.Models.ViewModels.CreditViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vendas</h2>
+@Html.ActionLink("Nova Venda", "SelectClient", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+<div>
+    @using (Html.BeginForm())
+    {
+        <div>
+            <div class="form-group ">
+                <div class="row" style="background-color:ghostwhite;">
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(model => model.DataPesquisa, "{0:dd/MM/yyyy}", new
+                         {
+                            @id = "dataPesquisa",
+                            @class = "form-control",
+                            @type = "month"
+                                                                                   })
+
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="btnSubmit" type="submit" class="btn btn-success ">Pesquisar</button>
+                    </div>
+
+                    <div class="col-sm-1">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(model => model.bImprimir) PDF
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <button id="btnSubmit" type="submit" class="btn btn-success ">Imprimir</button>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="checkbox">
+                            Total Vendas: R$:@ViewBag.Total
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover"  style="white-space:nowrap;">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Cliente</th>
+                <th>Data Pagamento</th>
+                <th>Forma</th>
+                <th>Valor</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var debit in Model.Credit)
+            {
+                <tr>
+                    <td>@debit.NameCredit</td>
+                    <td>@debit.Client.Name</td>
+                    <td>@debit.PaymentsDate.ToShortDateString()</td>
+                    <td>@debit.PaymentForm</td>
+                    <td>@debit.Value</td>
+                    <td>@debit.Observation</td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = debit.Id }, new { @class = "btn btn-warning" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Excluir", "Delete", new { id = debit.Id }, new { @class = "btn btn-danger" })
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

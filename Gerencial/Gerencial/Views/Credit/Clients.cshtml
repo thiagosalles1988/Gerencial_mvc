@@ -1,0 +1,57 @@
+﻿@model List<Gerencial.Models.Client>
+
+@{
+    ViewBag.Title = "Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Selecione um Cliente:</h2>
+<br />
+<br />
+<input type="text" id="txtClients" class="form-control" placeholder="Pesquisar...">
+<br />
+<div class="table-responsive " >
+    <table class="table table-bordered table-hover"  style="white-space:nowrap;">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>Celular</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Bairro</th>
+                <th>Estado</th>
+                <th>CEP</th>
+                <th>RG</th>
+                <th>CPF</th>
+                <th>Nascimento</th>
+                <th>Sexo</th>
+                <th>Profissão</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+            <tr>
+                <td>
+                    @Html.ActionLink("Selecionar", "Create", new { id = client.Id }, new { @class = "btn btn-success" })
+                </td>
+                <td>@client.Name</td>
+                <td>@client.Address</td>
+                <td>@client.CellPhone</td>
+                <td>@client.PhoneNumber</td>
+                <td>@client.Mail</td>
+                <td>@client.District</td>
+                <td>@client.State</td>
+                <td>@client.ZipCode</td>
+                <td>@client.RG</td>
+                <td>@client.CPF</td>
+                <td>@client.BirthDate.Value.ToShortDateString()</td>
+                <td>@client.Sexo</td>
+                <td>@client.Profession</td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

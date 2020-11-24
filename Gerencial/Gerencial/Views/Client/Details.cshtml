@@ -1,0 +1,60 @@
+﻿@model Gerencial.Models.Client
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalhes:</h4>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(m => m.Name)</dt>
+                    <dd>@Html.DisplayFor(model => model.Name)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Mail)</dt>
+                    <dd>@Html.DisplayFor(model => model.Mail)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.State)</dt>
+                    <dd>@Html.DisplayFor(model => model.State)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Sexo)</dt>
+                    <dd>@Html.DisplayFor(model => model.Sexo)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.BirthDate)</dt>
+                    <dd>@Html.DisplayFor(model => model.BirthDate)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.CellPhone)</dt>
+                    <dd>@Html.DisplayFor(model => model.CellPhone)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.CPF)</dt>
+                    <dd>@Html.DisplayFor(model => model.CPF)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.RG)</dt>
+                    <dd>@Html.DisplayFor(model => model.RG)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.PhoneNumber)</dt>
+                    <dd>@Html.DisplayFor(model => model.PhoneNumber)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Profession)</dt>
+                    <dd>@Html.DisplayFor(model => model.Profession)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Address)</dt>
+                    <dd>@Html.DisplayFor(model => model.Address)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.District)</dt>
+                    <dd>@Html.DisplayFor(model => model.District)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.State)</dt>
+                    <dd>@Html.DisplayFor(model => model.State)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.ZipCode)</dt>
+                    <dd>@Html.DisplayFor(model => model.ZipCode)</dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-success" value="Whatsapp"
+                       onclick="window.open('https://api.whatsapp.com/send?phone=+55 + @Html.DisplayFor(model => model.CellPhone)')" />
+
+                <input type="button" class="btn btn-success" value="Mensagem"
+                       onclick="window.open('https://api.whatsapp.com/send?phone=+55 + @Html.DisplayFor(model => model.CellPhone) + &text=ola')" />
+
+
+                @Html.ActionLink("Fechar", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+

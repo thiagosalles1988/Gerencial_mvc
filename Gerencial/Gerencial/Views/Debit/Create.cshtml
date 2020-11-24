@@ -1,0 +1,58 @@
+﻿@model Gerencial.Models.Debit
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Acao</h2>
+
+@using (Html.BeginForm("Create", "Debit", FormMethod.Post, new { @id = "frmSaveDebit" }))
+{
+    @Html.ValidationSummary(true, "Verifique os erros abaixo!")
+
+    <div class="row">
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.NameDebit)
+            @Html.TextBoxFor(m => m.NameDebit, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.NameDebit)
+        </div>
+
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.PaymentsDate)
+            @Html.TextBoxFor(m => m.PaymentsDate, "{0:dd/MM/yyyy}", new { @id = "dataPagamento", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PaymentsDate)
+        </div>
+
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.PaymentForm)
+            @Html.DropDownListFor(m => m.PaymentForm, new List<SelectListItem>
+                       { new SelectListItem{Text="Dinheiro", Value="Dinheiro", Selected = true},
+                         new SelectListItem{Text="Cartão de Crédito", Value="Cartão de Crédito"},
+                         new SelectListItem { Text = "Cheque", Value = "Cheque" } },
+                         new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PaymentForm)
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.Value)
+            @Html.TextBoxFor(m => m.Value, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Value)
+        </div>
+
+        <div class="form-group col-sm-4">
+            @Html.LabelFor(m => m.Observation)
+            @Html.TextBoxFor(m => m.Observation, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Observation)
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Id)
+
+    <button id="btnSubmit" type="submit" class="btn btn-success ">Salvar</button>
+    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+
+    @Html.AntiForgeryToken()
+}
+

@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Gerencial.Models.ViewModels
+{
+    public class DebitViewModel
+    {
+        public DateTime DataPesquisa { get; set; }
+
+        public bool bImprimir { get; set; }
+
+        public List<Debit> Debit { get; set; }
+
+        public float Total { get; set; }
+    }
+}

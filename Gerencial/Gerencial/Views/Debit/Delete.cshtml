@@ -1,0 +1,35 @@
+﻿@model Gerencial.Models.Debit
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>ATENÇÃO!</h2>
+
+<h3>Tem certeza que deseja excluir esta despesa?</h3>
+<div>
+    <h4>Débito a ser Excluído:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.NameDebit)</dt>
+        <dd>@Html.DisplayFor(model => model.NameDebit)</dd>
+        <dt>@Html.DisplayNameFor(model => model.PaymentsDate)</dt>
+        <dd>@Html.DisplayFor(model => model.PaymentsDate)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Value)</dt>
+        <dd>@Html.DisplayFor(model => model.Value)</dd>
+        <dt>@Html.DisplayNameFor(model => model.PaymentForm)</dt>
+        <dd>@Html.DisplayFor(model => model.PaymentForm)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Observation)</dt>
+        <dd>@Html.DisplayFor(model => model.Observation)</dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" /> |
+            @Html.ActionLink("Cancelar Exclusão", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>
